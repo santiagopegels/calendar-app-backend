@@ -2,8 +2,21 @@ const User = require('../models/user')
 
 const newUser = async (req, res) => {
 
+    const {email} = req.body
+
     try {
-        const user = new User(req.body)
+
+        let user = await User.findOne({email})
+        console.log(user)
+
+        if(user){
+            return res.status(400).json({
+                ok: false,
+                msg: 'Ya existe un usuario con ese correo'
+            })
+        }
+
+        user = new User(req.body)
 
         await user.save()
 
