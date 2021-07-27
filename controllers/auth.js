@@ -1,15 +1,23 @@
+const User = require('../models/user')
 
-const newUser = (req, res) => {
+const newUser = async (req, res) => {
 
-    const { name, email, password } = req.body
+    try {
+        const user = new User(req.body)
 
-    res.status(201).json({
-        ok: true,
-        msg: 'registro',
-        name,
-        email,
-        password
-    })
+        await user.save()
+
+        res.status(201).json({
+            ok: true,
+            msg: 'registro',
+        })
+    }
+    catch (error) {
+        res.status(500).json({
+            ok: false,
+            msg: error
+        })
+    }
 }
 
 const login = (req, res) => {
