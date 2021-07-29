@@ -22,7 +22,13 @@ router.post('/',
     ]
     , newEvent)
 
-router.put('/:id', updateEvent)
+router.put('/:id',
+[
+    check('title', 'El título es requerido').notEmpty(),
+    check('start', 'La fecha de comienzo es requerida').custom(isDate),
+    check('end', 'La fecha fin es requerida').custom(isDate),
+    validateFields
+], updateEvent)
 
 router.delete('/:id', deleteEvent)
 

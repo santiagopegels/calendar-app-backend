@@ -30,6 +30,8 @@ const validateJWT = async (req, res, next) => {
              })
          }
 
+         req.uid = uid;
+
         next()
 
     } catch (error) {
