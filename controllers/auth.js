@@ -27,8 +27,7 @@ const newUser = async (req, res) => {
 
         res.status(201).json({
             ok: true,
-            uid: user.id,
-            name: user.name
+            user
         })
     }
     catch (error) {
