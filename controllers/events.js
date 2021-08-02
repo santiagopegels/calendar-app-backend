@@ -21,7 +21,7 @@ const newEvent = async (req, res) => {
 
         res.json({
             ok: true,
-            eventDB
+            event: eventDB
         })
 
     } catch (error) {
